@@ -1,0 +1,21 @@
+{
+  "name": "antitop",
+  "version": "0.0.1",
+  "description": "antitop Chrome extension",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "dual": "0.0.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-browserify2": "~0.1.8",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-less": "~0.7.0"
+  }
+}

@@ -1,0 +1,90 @@
+@import 'cssreset-context-min.less';
+
+.atop {
+
+	&-popup {
+		// Reset
+		ol, ul, li {
+			text-align : left;
+		}
+
+		overflow: hidden;
+		position: fixed;
+		right: 0px;
+		top: 0px;
+
+		&-closed {
+			width: 70px;
+			height: 30px;
+		}
+	}
+
+	&-list {
+		.atop-popup-closed & ul {
+			display: none;
+		}
+
+		.atop-popup-open & .atop-list-top {
+			display: none;
+		}
+
+		// Root style
+		width: 320px;
+		height: 400px;
+		background: #ddd;
+		overflow-y: auto;
+	}
+
+	// List item styles
+
+
+	&-list-item {
+
+		border-bottom: 1px dotted #222;
+		list-style: none;
+		font-family: Arial;
+
+		li& {
+			padding: 0 4px;
+			min-height: 30px;
+		}
+
+		&_link {
+			text-decoration: none;
+			color: #222;
+		}
+
+		&_rank {
+			display: inline-block;
+			font-size: 22px;
+			min-width: 30px;
+			height: 30px;
+			background: #CCC;
+			// text-align: right;
+			line-height: 30px;
+			margin-right: 4px;
+			float: left;
+			margin-left: -4px;
+		}
+
+		&_rank-minus {
+			color : red;
+		}
+
+		&_rank-plus {
+			color : green;
+		}
+
+		&_text {
+			display: inline;
+			font-size: 14px;
+			vertical-align: top;
+		}
+
+		&_author {
+			text-align: right;
+			font-weight: bold;
+			font-size: 12px;
+		}
+	}
+}
