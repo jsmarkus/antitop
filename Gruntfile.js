@@ -32,16 +32,26 @@ module.exports = function(grunt) {
                 files: ['**/*.js', '**/*.less'],
                 tasks: [
                     'browserify2:dev',
-                    'less:dev'
+                    'less:dev',
+                    'copy'
                 ],
                 options: {
                     spawn: false,
                     atBegin: true
                 }
             }
+        },
+
+        copy: {
+            all: {
+                files : {
+                    'build/manifest.json':'manifest.json'
+                }
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-browserify2');

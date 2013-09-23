@@ -1,0 +1,12 @@
+{
+	"name": "Анти-ТОП: худшие комментарии",
+	"version": "0.0.1",
+	"manifest_version": 2,
+
+	"content_scripts": [{
+			"matches": ["*://*.habrahabr.ru/post/*"],
+			"css": ["style.css"],
+			"js": ["index.js"]
+		}
+	]
+}

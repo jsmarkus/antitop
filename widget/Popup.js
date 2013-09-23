@@ -27,11 +27,20 @@ var Popup = D.Widget.extend({
         this.assets.content.appendChild(list);
     },
 
-    ready: function () {
+    open: function () {
+        this.setAttribute('open', true);
+    },
+
+    close: function () {
         this.setAttribute('open', false);
+    },
+
+    ready: function () {
+        this.close();
         this.assets.content.listenTo('click');
-        this.assets.content.on('dom.click', function () {
-            this.setAttribute('open', !this.getAttribute('open'));
+        this.assets.content.on('dom.click', function (e) {
+            e.stopPropagation();
+            this.open();
         }.bind(this));
     }
 });
