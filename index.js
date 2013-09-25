@@ -1,8 +1,10 @@
 var bean = require('bean');
 var List = require('./widget/CommentList');
 var Popup = require('./widget/Popup');
-var HabrParser = require('./parser/Habr');
 var Router = require('./Router');
+
+var HabrParser = require('./parser/Habr');
+var D3Parser = require('./parser/D3');
 
 //--------------------------------------------------------------------
 
@@ -18,6 +20,11 @@ router.add(
 router.add(
 	/^\w+:\/\/(\w+\.)?habrahabr\.ru\/company\/\w+\/(blog|questions|events)\/\w+/,
 	onSiteHabrahabr);
+
+//habrahabr.ru company blog or question or event
+router.add(
+	/^\w+:\/\/(\w+\.)?d3\.ru\/comments\/\w+/,
+	onSiteD3);
 
 //testing page
 router.add(
@@ -64,6 +71,12 @@ function process(parser, theme) {
 
 function onSiteHabrahabr() {
 	process(new HabrParser(document.body), 'habr');
+}
+
+//--------------------------------------------------------------------
+
+function onSiteD3() {
+	process(new D3Parser(document.body), 'd3');
 }
 
 //--------------------------------------------------------------------

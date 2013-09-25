@@ -53,7 +53,7 @@ module.exports = boop.extend({
 		if (!node) {
 			return 0;
 		}
-		return parseInt(('' + node.innerText)
+		return parseInt(('' + node.textContent)
 			.replace(this.PLUS, '+')
 			.replace(this.MINUS, '-'), 10);
 	},
@@ -62,14 +62,14 @@ module.exports = boop.extend({
 		if (!node) {
 			return '';
 		}
-		return ('' + node.innerText).trim();
+		return ('' + node.textContent).trim();
 	},
 
 	parseAuthor: function(node) {
 		if (!node) {
 			return '';
 		}
-		return ('' + node.innerText).trim();
+		return ('' + node.textContent).trim();
 	}
 
 });
