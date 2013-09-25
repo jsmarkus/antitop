@@ -1,10 +1,9 @@
 var D = require('dual');
 
-var CLASS_PREFIX = 'atop-list-item_';
-
-var CLASS_RANK = CLASS_PREFIX + 'rank';
-var CLASS_RANK_PLUS = CLASS_RANK + ' ' + CLASS_RANK + '-plus';
-var CLASS_RANK_MINUS = CLASS_RANK + ' ' + CLASS_RANK + '-minus';
+var CLASS_PREFIX     = 'atop-list-item_';
+var CLASS_RANK       = CLASS_PREFIX + 'rank';
+var CLASS_RANK_PLUS  = CLASS_RANK + '-plus';
+var CLASS_RANK_MINUS = CLASS_RANK + '-minus';
 
 var Rank = D.Widget.extend({
     initStructure: function() {
@@ -19,16 +18,18 @@ var Rank = D.Widget.extend({
     applyAttribute_value: function(value) {
         var asset = this.assets.rank;
         var text = '' + value;
-        var cssClass = CLASS_RANK;
+
+        asset.removeClass(CLASS_RANK_PLUS);
+        asset.removeClass(CLASS_RANK_MINUS);
+
         if (value > 0) {
             text = '+' + text;
-            cssClass = CLASS_RANK_PLUS;
+            asset.addClass(CLASS_RANK_PLUS);
         }
         if (value < 0) {
-            cssClass = CLASS_RANK_MINUS;
+            asset.addClass(CLASS_RANK_MINUS);
         }
         asset.setText('' + text);
-        asset.setAttribute('class', cssClass);
     }
 });
 

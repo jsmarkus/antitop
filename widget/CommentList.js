@@ -1,11 +1,15 @@
 var D = require('dual');
 var Item = require('./CommentListItem');
 
+var CLASS_MAIN = 'atop-list';
+var CLASS_TOP = 'atop-list-top';
+
+
 var CommentList = D.List.extend({
     initStructure: function() {
         this.$ = D.fromJSON([
-            'div', {'class': 'atop-list'}, [
-                ['div', {'class': 'atop-list-top'}, [
+            'div', {'class': CLASS_MAIN}, [
+                ['div', {'class': CLASS_TOP}, [
                     ['antitop:rank', {'ui:asset': 'top'}],
                 ]],
                 ['ul', {'ui:asset': 'root'}]
@@ -23,12 +27,6 @@ var CommentList = D.List.extend({
 
     setupItem: function(data) {
         return new Item();
-    },
-
-    ready: function () {
-        // this.assets.top.on('click', function () {
-        //     this.emit('open');
-        // }.bind(this));
     }
 });
 

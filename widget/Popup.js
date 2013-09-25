@@ -1,15 +1,15 @@
 var D = require('dual');
 
-var CLASS_OPEN = 'atop-popup atop-popup-open yui3-cssreset';
-var CLASS_CLOSED = 'atop-popup atop-popup-closed yui3-cssreset';
-// var CLASS_PREFIX = 'atop-popup_';
+var CLASS_MAIN = 'atop-popup yui3-cssreset';
+var CLASS_OPEN = 'atop-popup-open';
+var CLASS_CLOSED = 'atop-popup-closed';
 
 
 var Popup = D.Widget.extend({
     initStructure : function () {
         this.$ = D.fromJSON([
             'div', {
-                class: CLASS_CLOSED,
+                class: CLASS_MAIN,
                 'ui:asset':'content'
             }
         ]);
@@ -17,9 +17,11 @@ var Popup = D.Widget.extend({
 
     applyAttribute_open: function (value) {
         if(value) {
-            this.assets.content.setAttribute('class', CLASS_OPEN);
+            this.assets.content.addClass(CLASS_OPEN);
+            this.assets.content.removeClass(CLASS_CLOSED);
         } else {
-            this.assets.content.setAttribute('class', CLASS_CLOSED);
+            this.assets.content.removeClass(CLASS_OPEN);
+            this.assets.content.addClass(CLASS_CLOSED);
         }
     },
 

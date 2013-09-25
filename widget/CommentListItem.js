@@ -1,22 +1,18 @@
 var D = require('dual');
 require('./Rank');
 
-var CLASS_PREFIX = 'atop-list-item_';
-
-var CLASS_ROOT = 'atop-list-item';
-var CLASS_TEXT = CLASS_PREFIX + 'text';
-var CLASS_AUTHOR = CLASS_PREFIX + 'author';
-var CLASS_LINK = CLASS_PREFIX + 'link';
-var CLASS_RANK = CLASS_PREFIX + 'rank';
-var CLASS_RANK_PLUS = CLASS_RANK + ' ' + CLASS_RANK + '-plus';
-var CLASS_RANK_MINUS = CLASS_RANK + ' ' + CLASS_RANK + '-minus';
+var CLASS_PREFIX     = 'atop-list-item_';
+var CLASS_ROOT       = 'atop-list-item';
+var CLASS_TEXT       = CLASS_PREFIX + 'text';
+var CLASS_AUTHOR     = CLASS_PREFIX + 'author';
+var CLASS_LINK       = CLASS_PREFIX + 'link';
+var CLASS_RANK       = CLASS_PREFIX + 'rank';
 
 var CommentListItem = D.Widget.extend({
     initStructure : function () {
         this.$ = D.fromJSON([
             'li', {class: CLASS_ROOT}, [
                 ['a', {'ui:asset':'link', class: CLASS_LINK}, [
-                    // ['div', {'ui:asset':'rank'  , class: CLASS_RANK   }],
                     ['antitop:rank', {'ui:asset':'rank'  , class: CLASS_RANK   }],
                     ['div', {'ui:asset':'text'  , class: CLASS_TEXT   }],
                     ['div', {'ui:asset':'author', class: CLASS_AUTHOR }]
