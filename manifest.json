@@ -4,9 +4,11 @@
 	"manifest_version": 2,
 
 	"content_scripts": [{
-			"matches": ["*://*.habrahabr.ru/post/*"],
-			"css": ["style.css"],
-			"js": ["index.js"]
-		}
-	]
+		"matches": [
+			"*://*.habrahabr.ru/post/*",
+			"*://*.habrahabr.ru/company/*/blog/*"
+		],
+		"css": ["style.css"],
+		"js": ["index.js"]
+	}]
 }
