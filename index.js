@@ -2,9 +2,11 @@ var bean = require('bean');
 var List = require('./widget/CommentList');
 var Popup = require('./widget/Popup');
 var Router = require('./Router');
+var waitDOM = require('./waitDOM');
 
 var HabrParser = require('./parser/Habr');
 var D3Parser = require('./parser/D3');
+var HyperCommentsParser = require('./parser/HyperComments');
 
 //--------------------------------------------------------------------
 
@@ -21,10 +23,15 @@ router.add(
 	/^\w+:\/\/(\w+\.)?habrahabr\.ru\/company\/\w+\/(blog|questions|events)\/\w+/,
 	onSiteHabrahabr);
 
-//habrahabr.ru company blog or question or event
+//d3.ru post
 router.add(
 	/^\w+:\/\/(\w+\.)?d3\.ru\/comments\/\w+/,
 	onSiteD3);
+
+//lenta.ru post
+router.add(
+	/^\w+:\/\/(\w+\.)?lenta\.ru\/comments\/news\/\w+/,
+	onSiteLenta);
 
 //testing page
 router.add(
@@ -77,6 +84,15 @@ function onSiteHabrahabr() {
 
 function onSiteD3() {
 	process(new D3Parser(document.body), 'd3');
+}
+
+//--------------------------------------------------------------------
+
+function onSiteLenta() {
+	// process(new D3Parser(document.body), 'd3');
+	waitDOM(document.body, '.hc_message', function () {
+		process(new HyperCommentsParser(document.body), 'lenta');
+	});
 }
 
 //--------------------------------------------------------------------
