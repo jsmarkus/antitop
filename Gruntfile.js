@@ -6,23 +6,44 @@ module.exports = function(grunt) {
             // options: {},
             dev: {
                 entry: './index',
-                compile: './build/index.js',
+                compile: './build/debug/index.js',
                 debug: true
             },
             prod: {
                 entry: './index',
-                compile: './build/index.js',
+                compile: './.tmp/index.js',
                 debug: false
             }
         },
 
-        less: {
-            dev: {
-                // options : {
-                // paths : ['less']
-                // },
+        uglify: {
+            options: {
+                report: 'gzip',
+                wrap: true,
+                banner: '/* ANTITOP extension */\n\n\n\n'
+            },
+            prod: {
                 files: {
-                    'build/style.css': 'less/app.less'
+                    'build/release/index.js': '.tmp/index.js'
+                }
+            }
+        },
+
+        less: {
+            options: {
+                report: 'gzip'
+            },
+            dev: {
+                files: {
+                    'build/debug/style.css': 'less/app.less'
+                }
+            },
+            prod: {
+                options: {
+                    yuicompress: true
+                },
+                files: {
+                    'build/release/style.css': 'less/app.less'
                 }
             }
         },
@@ -43,9 +64,14 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            all: {
-                files : {
-                    'build/manifest.json':'manifest.json'
+            dev: {
+                files: {
+                    'build/debug/manifest.json': 'manifest.json'
+                }
+            },
+            prod: {
+                files: {
+                    'build/release/manifest.json': 'manifest.json'
                 }
             }
         }
@@ -54,8 +80,16 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-browserify2');
 
-    grunt.registerTask('default', ['browserify2:dev']);
+    grunt.registerTask('dev', ['watch']);
+
+    grunt.registerTask('default', [
+        'browserify2:prod',
+        'uglify:prod',
+        'less:prod',
+        'copy:prod'
+    ]);
 
 };
