@@ -3,6 +3,7 @@ var D = require('dual');
 var CLASS_MAIN = 'atop-popup yui3-cssreset';
 var CLASS_OPEN = 'atop-popup-open';
 var CLASS_CLOSED = 'atop-popup-closed';
+var CLASS_THEME_PREFIX = 'atop-popup-theme_';
 
 
 var Popup = D.Widget.extend({
@@ -25,6 +26,11 @@ var Popup = D.Widget.extend({
         }
     },
 
+    applyAttribute_theme: function (value) {
+        var cssclass = CLASS_THEME_PREFIX + value;
+        this.assets.content.addClass(cssclass);
+    },
+
     setList: function (list) {
         this.assets.content.appendChild(list);
     },
@@ -35,6 +41,10 @@ var Popup = D.Widget.extend({
 
     close: function () {
         this.setAttribute('open', false);
+    },
+
+    setTheme: function (theme) {
+        this.setAttribute('theme', theme);
     },
 
     ready: function () {

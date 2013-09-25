@@ -5,8 +5,7 @@
 
 	"content_scripts": [{
 		"matches": [
-			"*://*.habrahabr.ru/post/*",
-			"*://*.habrahabr.ru/company/*/blog/*"
+			"*://*.habrahabr.ru/*"
 		],
 		"css": ["style.css"],
 		"js": ["index.js"]
