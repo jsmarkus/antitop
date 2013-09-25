@@ -11,7 +11,8 @@
   "license": "BSD",
   "dependencies": {
     "dual": "0.0.3",
-    "bean": "~1.0.4"
+    "bean": "~1.0.4",
+    "boop": "0.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
