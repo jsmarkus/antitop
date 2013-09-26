@@ -1,5 +1,6 @@
 var D = require('dual');
 var Item = require('./CommentListItem');
+var Rank = require('./Rank');
 
 var CLASS_MAIN = 'atop-list';
 var CLASS_TOP = 'atop-list-top';
@@ -14,7 +15,9 @@ var CommentList = D.List.extend({
                 ]],
                 ['ul', {'ui:asset': 'root'}]
             ]
-        ]);
+        ], {
+            'antitop:rank':Rank
+        });
     },
 
     setTopRank: function(value) {

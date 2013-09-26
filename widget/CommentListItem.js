@@ -1,5 +1,5 @@
 var D = require('dual');
-require('./Rank');
+var Rank = require('./Rank');
 
 var CLASS_PREFIX     = 'atop-list-item_';
 var CLASS_ROOT       = 'atop-list-item';
@@ -18,7 +18,9 @@ var CommentListItem = D.Widget.extend({
                     ['div', {'ui:asset':'author', class: CLASS_AUTHOR }]
                 ]]
             ]
-        ]);
+        ], {
+            'antitop:rank':Rank
+        });
     },
 
     applyAttribute_url: function(value) {

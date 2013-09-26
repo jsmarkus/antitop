@@ -33,6 +33,4 @@ var Rank = D.Widget.extend({
     }
 });
 
-D.factory.register('antitop:rank', Rank);
-
 module.exports = Rank;
