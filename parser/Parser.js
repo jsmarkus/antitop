@@ -55,7 +55,7 @@ module.exports = boop.extend({
 		}
 		return parseInt(('' + node.textContent)
 			.replace(this.PLUS, '+')
-			.replace(this.MINUS, '-'), 10);
+			.replace(this.MINUS, '-'), 10) || 0;
 	},
 
 	parseText: function(node) {
