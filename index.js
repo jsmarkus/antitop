@@ -33,6 +33,11 @@ router.add(
 	/^\w+:\/\/(\w+\.)?lenta\.ru\/comments\/news\/\w+/,
 	onSiteLenta);
 
+//tvrain.ru post
+router.add(
+	/^\w+:\/\/(\w+\.)?tvrain\.ru\/articles\/\w+/,
+	onSiteTvrain);
+
 //testing page
 router.add(
 	/^file:/,
@@ -89,9 +94,15 @@ function onSiteD3() {
 //--------------------------------------------------------------------
 
 function onSiteLenta() {
-	// process(new D3Parser(document.body), 'd3');
 	waitDOM(document.body, '.hc_message', function () {
 		process(new HyperCommentsParser(document.body), 'lenta');
+	});
+}
+
+//--------------------------------------------------------------------
+function onSiteTvrain() {
+	waitDOM(document.body, '.hc_message', function () {
+		process(new HyperCommentsParser(document.body), 'tvrain');
 	});
 }
 
