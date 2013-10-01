@@ -7,6 +7,7 @@ var waitDOM = require('./waitDOM');
 var HabrParser = require('./parser/Habr');
 var D3Parser = require('./parser/D3');
 var HyperCommentsParser = require('./parser/HyperComments');
+var IntenseDebateParser = require('./parser/IntenseDebate');
 
 //--------------------------------------------------------------------
 
@@ -37,6 +38,11 @@ router.add(
 router.add(
 	/^\w+:\/\/(\w+\.)?tvrain\.ru\/articles\/\w+/,
 	onSiteTvrain);
+
+//macdigger.ru post
+router.add(
+	/^\w+:\/\/(\w+\.)?macdigger\.ru\/\w+/,
+	onSiteMacdigger);
 
 //testing page
 router.add(
@@ -103,6 +109,13 @@ function onSiteLenta() {
 function onSiteTvrain() {
 	waitDOM(document.body, '.hc_message', function () {
 		process(new HyperCommentsParser(document.body), 'tvrain');
+	});
+}
+
+//--------------------------------------------------------------------
+function onSiteMacdigger() {
+	waitDOM(document.body, '.idc-thread', function () {
+		process(new IntenseDebateParser(document.body), 'macdigger');
 	});
 }
 

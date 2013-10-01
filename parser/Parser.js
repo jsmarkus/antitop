@@ -20,16 +20,15 @@ module.exports = boop.extend({
 		for (var i = 0; i < nComments.length; i++) {
 			var nComment = nComments[i];
 
-			var nRank = nComment.querySelector(this.SELECTOR_RANK);
-			var nText = nComment.querySelector(this.SELECTOR_TEXT);
-			var nLink = nComment.querySelector(this.SELECTOR_URL);
-			var nAuthor = nComment.querySelector(this.SELECTOR_AUTOR);
+			var nRank   = this.SELECTOR_RANK  ? nComment.querySelector(this.SELECTOR_RANK)  : nComment;
+			var nText   = this.SELECTOR_TEXT  ? nComment.querySelector(this.SELECTOR_TEXT)  : nComment;
+			var nLink   = this.SELECTOR_URL   ? nComment.querySelector(this.SELECTOR_URL)   : nComment;
+			var nAuthor = this.SELECTOR_AUTOR ? nComment.querySelector(this.SELECTOR_AUTOR) : nComment;
 
-			var iRank = this.parseRank(nRank);
-			var sText = this.parseText(nText);
-			var sUrl = this.parseUrl(nLink);
+			var iRank   = this.parseRank  (nRank  );
+			var sText   = this.parseText  (nText  );
+			var sUrl    = this.parseUrl   (nLink  );
 			var sAuthor = this.parseAuthor(nAuthor);
-			// console.log(iRank, sText);
 
 			results.push({
 				rank: iRank,
