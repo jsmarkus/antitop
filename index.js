@@ -9,6 +9,7 @@ var D3Parser = require('./parser/D3');
 var D3Helper = require('./helper/D3');
 var HyperCommentsParser = require('./parser/HyperComments');
 var IntenseDebateParser = require('./parser/IntenseDebate');
+var AdmeParser = require('./parser/Adme');
 
 //--------------------------------------------------------------------
 
@@ -29,6 +30,11 @@ router.add(
 router.add(
 	/^\w+:\/\/(\w+\.)?d3\.ru\/comments\/\w+/,
 	onSiteD3);
+
+//adme.ru post
+router.add(
+	/^\w+:\/\/(\w+\.)?adme\.ru\/[^.]+\/comments/,
+	onSiteAdme);
 
 //lenta.ru post
 router.add(
@@ -97,6 +103,12 @@ function onSiteHabrahabr() {
 function onSiteD3() {
 	D3Helper.expandCollapsedComments();
 	process(new D3Parser(document.body), 'd3');
+}
+
+//--------------------------------------------------------------------
+
+function onSiteAdme() {
+	process(new AdmeParser(document.body), 'adme');
 }
 
 //--------------------------------------------------------------------
