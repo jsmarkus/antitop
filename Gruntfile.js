@@ -2,16 +2,17 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        browserify2: {
-            // options: {},
+        browserify: {
             dev: {
-                entry: './index',
-                compile: './build/debug/index.js',
+                files: {
+                    './build/debug/index.js': './index.js'
+                },
                 debug: true
             },
             prod: {
-                entry: './index',
-                compile: './.tmp/index.js',
+                files: {
+                    './.tmp/index.js': './index.js'
+                },
                 debug: false
             }
         },
@@ -52,7 +53,7 @@ module.exports = function(grunt) {
             dev: {
                 files: ['**/*.js', '**/*.less'],
                 tasks: [
-                    'browserify2:dev',
+                    'browserify:dev',
                     'less:dev',
                     'copy'
                 ],
@@ -81,12 +82,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-browserify2');
+    grunt.loadNpmTasks('grunt-browserify');
 
     grunt.registerTask('dev', ['watch']);
 
     grunt.registerTask('default', [
-        'browserify2:prod',
+        'browserify:prod',
         'uglify:prod',
         'less:prod',
         'copy:prod'
