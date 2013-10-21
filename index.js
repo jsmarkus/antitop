@@ -6,6 +6,7 @@ var waitDOM = require('./waitDOM');
 
 var HabrParser = require('./parser/Habr');
 var D3Parser = require('./parser/D3');
+var D3Helper = require('./helper/D3');
 var HyperCommentsParser = require('./parser/HyperComments');
 var IntenseDebateParser = require('./parser/IntenseDebate');
 
@@ -94,6 +95,7 @@ function onSiteHabrahabr() {
 //--------------------------------------------------------------------
 
 function onSiteD3() {
+	D3Helper.expandCollapsedComments();
 	process(new D3Parser(document.body), 'd3');
 }
 
